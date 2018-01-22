@@ -42,20 +42,6 @@ public class MainActivity extends AppCompatActivity {
          */
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
 
-        // TODO (4) Delete the dummy weather data. You will be getting REAL data from the Internet in this lesson.
-        /*
-         * This String array contains dummy weather data. Later in the course, we're going to get
-         * real weather data. For now, we want to get something on the screen as quickly as
-         * possible, so we'll display this dummy data.
-         */
-
-
-        // TODO (3) Delete the for loop that populates the TextView with dummy data
-        /*
-         * Iterate through the array and append the Strings to the TextView. The reason why we add
-         * the "\n\n\n" after the String is to give visual separation between each String in the
-         * TextView. Later, we'll learn about a better way to display lists of data.
-         */
 
 
         // TODO (9) Call loadWeatherData to perform the network request to get the weather
@@ -65,13 +51,13 @@ public class MainActivity extends AppCompatActivity {
     // TODO (8) Create a method that will get the user's preferred location and execute your new AsyncTask and call it loadWeatherData
     private void loadWeatherData() {
         String location = SunshinePreferences.getPreferredWeatherLocation(this);
-        new WeatherTask().execute(location);
+        new fetchWeatherTask().execute(location);
     }
 
     // TODO (5) Create a class that extends AsyncTask to perform network requests
     // TODO (6) Override the doInBackground method to perform your network requests
 
-    public class WeatherTask extends AsyncTask<String, Void, String[]> {
+    public class fetchWeatherTask extends AsyncTask<String, Void, String[]> {
         @Override
         protected String[] doInBackground(String... params) {
             if (params.length == 0) {
@@ -95,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         // TODO (7) Override the onPostExecute method to display the results of the network request
-
+        @Override
         protected void onPostExecute(String[] weatherData) {
             if (weatherData != null) {
 
